@@ -6,7 +6,7 @@ import os
 
 dbfile = 'db_large.csv'
 report_file = 'results/analysis.csv'
-num_days = 30
+num_days = 100
 pfd = ProdFreqDB(dbfile)
 
 #for small db
