@@ -1,4 +1,5 @@
 from math import ceil
+from datetime import datetime
 import csv
 
 
@@ -8,9 +9,8 @@ class ProdFreqDB:
     :param dbfile: path to a csv db file that contains product-frequency information
     """
 
-    def __init__(self, dbfile):
-        self.dbfile = dbfile
-        self._db_dict = self._read_dbfile(self.dbfile)
+    def __init__(self, session):
+        self.session = session
 
     def refresh(self):
         """Refresh required if db file changes"""
@@ -60,6 +60,10 @@ class Product:
     :param frequency: Frequency of scraping daily e.g 24 means 24 times a day and 0.25 means once every 4 days
     """
 
-    def __init__(self, name: str, frequency: float):
+    def __init__(self, name: str, frequency: float, last_batched: datetime = None):
         self.name = name
         self.frequency = frequency
+        self.last_batched = last_batched
+
+    def __repr__(self):
+        return "Product(name= {}, frequency= {})".format(self.name, self.frequency)
